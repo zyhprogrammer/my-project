@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教室座位预约系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <!-- 导航栏 -->
+        <nav class="navbar">
+            <h1>教室座位预约系统</h1>
+            <div id="user-info" class="hidden">
+                <span id="username"></span>
+                <button id="logout-btn">退出登录</button>
+            </div>
+            <div id="auth-buttons">
+                <button id="login-btn" onclick="document.getElementById('login-modal').style.display = 'block'; console.log('登录按钮点击');">登录</button>
+                <button id="register-btn" onclick="document.getElementById('register-modal').style.display = 'block'; console.log('注册按钮点击');">注册</button>
+            </div>
+        </nav>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 登录模态框 -->
+            <div id="login-modal" class="modal hidden">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="document.getElementById('login-modal').style.display = 'none';">×</span>
+                    <h2>用户登录</h2>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="login-username">用户名:</label>
+                            <input type="text" id="login-username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">密码:</label>
+                            <input type="password" id="login-password" required>
+                        </div>
+                        <button type="submit" class="submit-btn">登录</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 注册模态框 -->
+            <div id="register-modal" class="modal hidden">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="document.getElementById('register-modal').style.display = 'none';">×</span>
+                    <h2>用户注册</h2>
+                    <form id="register-form">
+                        <div class="form-group">
+                            <label for="reg-username">用户名:</label>
+                            <input type="text" id="reg-username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-password">密码:</label>
+                            <input type="password" id="reg-password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-confirm-password">确认密码:</label>
+                            <input type="password" id="reg-confirm-password" required>
+                        </div>
+                        <button type="submit" class="submit-btn">注册</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 座位平面图 -->
+            <div id="seat-container" class="seat-container hidden">
+                <div class="stage">讲台</div>
+                <div class="seats-grid" id="seats-grid">
+                    <!-- 座位将通过JavaScript动态生成 -->
+                </div>
+                <div class="time-control">
+                    <label for="reservation-time">预约时长(小时):</label>
+                    <select id="reservation-time">
+                        <option value="1">1小时</option>
+                        <option value="2">2小时</option>
+                        <option value="3">3小时</option>
+                        <option value="4">4小时</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- 登录提示 -->
+            <div id="login-prompt" class="login-prompt">
+                <p>请先登录以预约座位</p>
+            </div>
+
+            <!-- 管理员功能区域 -->
+            <div id="admin-panel" class="admin-panel hidden">
+                <h3>管理员功能</h3>
+                <button id="reset-seats-btn" onclick="resetAllSeats()">重置所有座位</button>
+                <button id="manage-users-btn" onclick="showManageUsersModal()">管理用户</button>
+            </div>
+
+            <!-- 管理用户模态框 -->
+            <div id="manage-users-modal" class="modal hidden">
+                <div class="modal-content">
+                    <span class="close-btn" onclick="document.getElementById('manage-users-modal').style.display = 'none';">×</span>
+                    <h2>用户管理</h2>
+                    <div id="users-list">
+                        <!-- 用户列表将通过JavaScript动态生成 -->
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>&copy; 2025 教室座位预约系统，版权归朱亦宏所有</p>
+        </footer>
+    </div>
+</body>
+</html>
